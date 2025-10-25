@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba de Matemáticas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .question {
+      margin: 15px 0;
+    }
+    .btn-calificar {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn-calificar:hover {
+      background-color: #0056b3;
+    }
+    .resultado {
+      margin: 20px 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prueba de Matemáticas</h1>
+
+  <div class="question">
+    <p>1. ¿Cuánto es 7 + 5?</p>
+    <label><input type="radio" name="q1" value="10"> 10</label><br>
+    <label><input type="radio" name="q1" value="12"> 12</label><br>
+    <label><input type="radio" name="q1" value="13"> 13</label><br>
+  </div>
+
+  <div class="question">
+    <p>2. ¿Cuál es la raíz cuadrada de 81?</p>
+    <label><input type="radio" name="q2" value="7"> 7</label><br>
+    <label><input type="radio" name="q2" value="8"> 8</label><br>
+    <label><input type="radio" name="q2" value="9"> 9</label><br>
+  </div>
+
+  <div class="question">
+    <p>3. ¿Cuál es el resultado de 15 ÷ 3?</p>
+    <label><input type="radio" name="q3" value="4"> 4</label><br>
+    <label><input type="radio" name="q3" value="5"> 5</label><br>
+    <label><input type="radio" name="q3" value="6"> 6</label><br>
+  </div>
+
+  <div class="question">
+    <p>4. ¿Qué tipo de triángulo tiene todos sus lados iguales?</p>
+    <label><input type="radio" name="q4" value="isósceles"> Isósceles</label><br>
+    <label><input type="radio" name="q4" value="escaleno"> Escaleno</label><br>
+    <label><input type="radio" name="q4" value="equilátero"> Equilátero</label><br>
+  </div>
+
+  <div class="question">
+    <p>5. ¿Cuál es el valor de x si 2x + 3 = 11?</p>
+    <label><input type="radio" name="q5" value="3"> 3</label><br>
+    <label><input type="radio" name="q5" value="4"> 4</label><br>
+    <label><input type="radio" name="q5" value="5"> 5</label><br>
+  </div>
+
+  <button class="btn-calificar" id="calificarBtn">Calificar</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    document.getElementById('calificarBtn').addEventListener('click', function() {
+      const respuestasCorrectas = {
+        q1: '12',
+        q2: '9',
+        q3: '5',
+        q4: 'equilátero',
+        q5: '4'
+      };
+
+      let puntos = 0;
+      let total = Object.keys(respuestasCorrectas).length;
+
+      // Para cada pregunta evaluar
+      for (let q in respuestasCorrectas) {
+        const selector = `input[name="${q}"]:checked`;
+        const elemento = document.querySelector(selector);
+        if (elemento && elemento.value === respuestasCorrectas[q]) {
+          puntos++;
+        }
+      }
+
+      document.getElementById('resultado').textContent = `Obtuviste ${puntos} de ${total} puntos.`;
+    });
+  </script>
+
+</body>
+</html>
+
