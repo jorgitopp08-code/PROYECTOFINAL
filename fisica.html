@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Física</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef5ff;
+            margin: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #003366;
+        }
+        .pregunta {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Prueba de Física</h1>
+
+    <form id="quiz">
+        <div class="pregunta">
+            <p>1. ¿Cuál es la unidad de fuerza en el Sistema Internacional?</p>
+            <label><input type="radio" name="p1" value="1"> Newton</label><br>
+            <label><input type="radio" name="p1" value="0"> Joule</label><br>
+            <label><input type="radio" name="p1" value="0"> Watt</label>
+        </div>
+
+        <div class="pregunta">
+            <p>2. ¿Qué ley establece que la aceleración es directamente proporcional a la fuerza aplicada?</p>
+            <label><input type="radio" name="p2" value="0"> Primera ley de Newton</label><br>
+            <label><input type="radio" name="p2" value="1"> Segunda ley de Newton</label><br>
+            <label><input type="radio" name="p2" value="0"> Tercera ley de Newton</label>
+        </div>
+
+        <div class="pregunta">
+            <p>3. ¿Cuál es la aceleración debida a la gravedad en la Tierra (aproximada)?</p>
+            <label><input type="radio" name="p3" value="1"> 9.8 m/s²</label><br>
+            <label><input type="radio" name="p3" value="0"> 8.9 m/s²</label><br>
+            <label><input type="radio" name="p3" value="0"> 10.5 m/s²</label>
+        </div>
+
+        <div class="pregunta">
+            <p>4. ¿Qué cantidad física se mide en vatios?</p>
+            <label><input type="radio" name="p4" value="1"> Potencia</label><br>
+            <label><input type="radio" name="p4" value="0"> Trabajo</label><br>
+            <label><input type="radio" name="p4" value="0"> Energía</label>
+        </div>
+
+        <div class="pregunta">
+            <p>5. ¿Cuál es la fórmula de la velocidad promedio?</p>
+            <label><input type="radio" name="p5" value="1"> distancia / tiempo</label><br>
+            <label><input type="radio" name="p5" value="0"> tiempo / distancia</label><br>
+            <label><input type="radio" name="p5" value="0"> masa / aceleración</label>
+        </div>
+
+        <button type="button" onclick="calificar()">Calificar</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calificar() {
+            let total = 0;
+            const respuestas = document.querySelectorAll('input[type="radio"]:checked');
+            respuestas.forEach(r => total += parseInt(r.value));
+            
+            if (respuestas.length < 5) {
+                document.getElementById("resultado").innerHTML = "⚠️ Responde todas las preguntas antes de calificar.";
+                return;
+            }
+
+            document.getElementById("resultado").innerHTML = `Tu calificación es: <span style="color:#007bff;">${total} / 5</span>`;
+        }
+    </script>
+
+</body>
+</html>
