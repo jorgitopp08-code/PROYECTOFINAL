@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Química</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .contenedor {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            width: 380px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .pregunta {
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>Prueba de Química</h2>
+
+        <form id="quizForm">
+
+            <div class="pregunta">
+                <p>1. ¿Cuál es el símbolo químico del oxígeno?</p>
+                <label><input type="radio" name="q1" value="O"> O</label><br>
+                <label><input type="radio" name="q1" value="Ox"> Ox</label><br>
+                <label><input type="radio" name="q1" value="Og"> Og</label>
+            </div>
+
+            <div class="pregunta">
+                <p>2. ¿Cuál es el número atómico del hidrógeno?</p>
+                <label><input type="radio" name="q2" value="1"> 1</label><br>
+                <label><input type="radio" name="q2" value="2"> 2</label><br>
+                <label><input type="radio" name="q2" value="3"> 3</label>
+            </div>
+
+            <div class="pregunta">
+                <p>3. ¿Qué tipo de enlace se forma al compartir electrones?</p>
+                <label><input type="radio" name="q3" value="Covalente"> Covalente</label><br>
+                <label><input type="radio" name="q3" value="Iónico"> Iónico</label><br>
+                <label><input type="radio" name="q3" value="Metálico"> Metálico</label>
+            </div>
+
+            <div class="pregunta">
+                <p>4. ¿Cuál es la fórmula del agua?</p>
+                <label><input type="radio" name="q4" value="H2O"> H₂O</label><br>
+                <label><input type="radio" name="q4" value="HO2"> HO₂</label><br>
+                <label><input type="radio" name="q4" value="O2H"> O₂H</label>
+            </div>
+
+            <div class="pregunta">
+                <p>5. ¿Qué es un ácido según la teoría de Brønsted-Lowry?</p>
+                <label><input type="radio" name="q5" value="Donador de protones"> Donador de protones</label><br>
+                <label><input type="radio" name="q5" value="Aceptor de protones"> Aceptor de protones</label><br>
+                <label><input type="radio" name="q5" value="Electrón libre"> Electrón libre</label>
+            </div>
+
+            <button type="button" id="calificarBtn">Calificar</button>
+        </form>
+
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        document.getElementById("calificarBtn").addEventListener("click", function() {
+            let correctas = 0;
+            const respuestas = {
+                q1: "O",
+                q2: "1",
+                q3: "Covalente",
+                q4: "H2O",
+                q5: "Donador de protones"
+            };
+
+            for (let pregunta in respuestas) {
+                const seleccion = document.querySelector(`input[name="${pregunta}"]:checked`);
+                if (seleccion && seleccion.value === respuestas[pregunta]) {
+                    correctas++;
+                }
+            }
+
+            const total = Object.keys(respuestas).length;
+            const resultado = document.getElementById("resultado");
+            const porcentaje = (correctas / total) * 100;
+
+            resultado.innerHTML = `Obtuviste ${correctas} de ${total} respuestas correctas. (${porcentaje.toFixed(0)}%)`;
+
+            resultado.style.color = correctas === total ? "green" : "red";
+        });
+    </script>
+</body>
+</html>
