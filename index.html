@@ -1,62 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetoPrepárate - Acceso</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetoPrepárate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .contenedor {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 85%;
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .btn-prueba {
+      width: 90%;
+      margin-top: 10px;
+    }
+  </style>
 </head>
+<body>
 
-<body class="text-center bg-light">
+  <!-- Pantalla de ingreso de PIN -->
+  <div class="contenedor" id="pantallaPin">
+    <h2>RETOPREPÁRATE</h2>
+    <p>Ingresa el PIN para continuar</p>
+    <input type="password" id="pin" placeholder="Ingrese PIN">
+    <button onclick="verificarPin()">Entrar</button>
+    <p id="mensajeError" style="color:red; margin-top:10px;"></p>
+  </div>
 
-    <div class="container mt-5">
-        <h1 class="mb-4">🔐 BIENVENIDO A RETOPREPARATE</h1>
-        <div class="card mx-auto p-4 shadow" style="max-width: 400px;">
-            <h4>Ingresa tu PIN</h4>
-            <input type="password" id="pin" class="form-control mt-3" placeholder="PIN de acceso">
-            <button class="btn btn-primary mt-3 w-100" onclick="validarPIN()">Entrar</button>
-            <p id="mensaje" class="text-danger mt-2"></p>
-        </div>
-    </div>
+  <!-- Pantalla de selección de pruebas -->
+  <div class="contenedor oculto" id="pantallaMenu">
+    <h2>Elige una prueba para comenzar</h2>
+    <button class="btn-prueba" onclick="alert('Abrir Prueba de Matemáticas')">Prueba de Matemáticas</button>
+    <button class="btn-prueba" onclick="alert('Abrir Prueba de Física')">Prueba de Física</button>
+    <button class="btn-prueba" onclick="alert('Abrir Prueba de Química')">Prueba de Química</button>
+    <button class="btn-prueba" onclick="alert('Abrir Prueba de Lenguaje')">Prueba de Lenguaje</button>
+  </div>
 
-    <script src="js/script.js"></script>
-</body>
-<!DOCTYPE html>
-<html lang="es">
+  <script>
+    function verificarPin() {
+      const pinIngresado = document.getElementById("pin").value;
+      const mensajeError = document.getElementById("mensajeError");
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetoPrepárate - Evaluaciones</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-light text-center">
-
-    <div class="container mt-5">
-        <h1>📚 SELECCIONA UNA EVALUACION</h1>
-        <div class="row mt-4">
-            <div class="col-md-3 mb-3">
-                <a href="#" class="btn btn-outline-primary w-100">MATEMATICA</a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a href="#" class="btn btn-outline-success w-100">FISICA</a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a href="#" class="btn btn-outline-warning w-100">QUIMICA</a>
-            </div>
-            <div class="col-md-3 mb-3">
-                <a href="#" class="btn btn-outline-danger w-100">LENGUAJE</a>
-            </div>
-        </div>
-    </div>
-    <script src="js/script.js"></script>
+      if (pinIngresado === "1234") {
+        // Mostrar el menú y ocultar el login
+        document.getElementById("pantallaPin").classList.add("oculto");
+        document.getElementById("pantallaMenu").classList.remove("oculto");
+      } else {
+        mensajeError.textContent = "PIN incorrecto. Intenta nuevamente.";
+      }
+    }
+  </script>
 
 </body>
-
-</html>
-
 </html>
