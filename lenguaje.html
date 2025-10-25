@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Lenguaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .contenedor {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            width: 380px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .pregunta {
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>Prueba de Lenguaje</h2>
+
+        <form id="quizForm">
+
+            <div class="pregunta">
+                <p>1. ¿Cuál es el sujeto en la oracion "El perro corre rapido"?</p>
+                <label><input type="radio" name="q1" value="El perro"> El perro</label><br>
+                <label><input type="radio" name="q1" value="corre"> corre</label><br>
+                <label><input type="radio" name="q1" value="rapido"> rapido</label>
+            </div>
+
+            <div class="pregunta">
+                <p>2. ¿Que tipo de palabra es "rapido" en la oracion anterior ?</p>
+                <label><input type="radio" name="q2" value="Adjetivo"> Adjetivo</label><br>
+                <label><input type="radio" name="q2" value="verbo"> verbo</label><br>
+                <label><input type="radio" name="q2" value="Sustantivo"> Sustantivo</label>
+            </div>
+
+            <div class="pregunta">
+                <p>3. ¿Cual es el sinonimo de la palabra "feliz"?</p>
+                <label><input type="radio" name="q3" value="Triste"> Triste</label><br>
+                <label><input type="radio" name="q3" value="Contento"> Contento</label><br>
+                <label><input type="radio" name="q3" value="Rapido"> Rapido</label>
+            </div>
+
+            <div class="pregunta">
+                <p>4. ¿Que signo de puntuacion se usa para indicar una pregunta?</p>
+                <label><input type="radio" name="q4" value="Signo de interrogacion"> Signo de interrogación</label><br>
+                <label><input type="radio" name="q4" value="Coma"> Coma</label><br>
+                <label><input type="radio" name="q4" value="Punto"> Punto</label>
+            </div>
+
+            <div class="pregunta">
+                <p>5. ¿Cual es la forma correcta del plural de "luz"?</p>
+                <label><input type="radio" name="q5" value="Luzes"> Luzes</label><br>
+                <label><input type="radio" name="q5" value="Luces"> Luces</label><br>
+                <label><input type="radio" name="q5" value="Luzes"> Luzes</label>
+            </div>
+
+            <button type="button" id="calificarBtn">Calificar</button>
+        </form>
+
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        document.getElementById("calificarBtn").addEventListener("click", function() {
+            let correctas = 0;
+            const respuestas = {
+                q1: "El perro",
+                q2: "Adjetivo",
+                q3: "Contento",
+                q4: "Signo de interrogacion",
+                q5: "Luces"
+            };
+
+            for (let pregunta in respuestas) {
+                const seleccion = document.querySelector(`input[name="${pregunta}"]:checked`);
+                if (seleccion && seleccion.value === respuestas[pregunta]) {
+                    correctas++;
+                }
+            }
+
+            const total = Object.keys(respuestas).length;
+            const resultado = document.getElementById("resultado");
+            const porcentaje = (correctas / total) * 100;
+
+            resultado.innerHTML = `Obtuviste ${correctas} de ${total} respuestas correctas. (${porcentaje.toFixed(0)}%)`;
+
+            resultado.style.color = correctas === total ? "green" : "red";
+        });
+    </script>
+</body>
+</html>
