@@ -76,10 +76,10 @@
   <!-- Pantalla de selección de pruebas -->
   <div class="contenedor oculto" id="pantallaMenu">
     <h2>Elige una prueba para comenzar</h2>
-    <button class="btn-prueba" onclick="alert('Abrir Prueba de Matemáticas')">Prueba de Matemáticas</button>
-    <button class="btn-prueba" onclick="alert('Abrir Prueba de Física')">Prueba de Física</button>
-    <button class="btn-prueba" onclick="alert('Abrir Prueba de Química')">Prueba de Química</button>
-    <button class="btn-prueba" onclick="alert('Abrir Prueba de Lenguaje')">Prueba de Lenguaje</button>
+    <button class="btn-prueba" onclick="abrirPrueba('matematicas.html')">Prueba de Matemáticas</button>
+    <button class="btn-prueba" onclick="abrirPrueba('fisica.html')">Prueba de Física</button>
+    <button class="btn-prueba" onclick="abrirPrueba('quimica.html')">Prueba de Química</button>
+    <button class="btn-prueba" onclick="abrirPrueba('lenguaje.html')">Prueba de Lenguaje</button>
   </div>
 
   <script>
@@ -88,12 +88,16 @@
       const mensajeError = document.getElementById("mensajeError");
 
       if (pinIngresado === "1234") {
-        // Mostrar el menú y ocultar el login
         document.getElementById("pantallaPin").classList.add("oculto");
         document.getElementById("pantallaMenu").classList.remove("oculto");
       } else {
         mensajeError.textContent = "PIN incorrecto. Intenta nuevamente.";
       }
+    }
+
+    function abrirPrueba(url) {
+      // Redirige a la página indicada
+      window.location.href = url;
     }
   </script>
 
